@@ -1,10 +1,12 @@
 # jQuery Countdown
 
-jQuery Countdown is a countdown library with an amazing animation. Take a look
-at the [demonstration](http://reflejo.github.com/jquery-countdown/)
+WP jQuery Countdown is a fork of [jQuery Countdown](https://github.com/Reflejo/jquery-countdown) which allows the plugin to be used as a WP shortcode.
 
-Now you can download the PSD file
-[here](https://github.com/Reflejo/jquery-countdown/blob/master/img/digits.psd).
+Use `[wp_jquery_countdown endtime="15:00"]` to count down from 15 minutes.
+
+jQuery Countdown is a countdown library with an amazing animation. Take a look at the [demonstration](http://reflejo.github.com/jquery-countdown/).
+
+Download the PSD file [here](https://github.com/Reflejo/jquery-countdown/blob/master/img/digits.psd).
 
 ### Basic usage:
 
