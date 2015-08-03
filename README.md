@@ -8,6 +8,10 @@ jQuery Countdown is a countdown library with an amazing animation. Take a look a
 
 Download the PSD file [here](https://github.com/Reflejo/jquery-countdown/blob/master/img/digits.psd).
 
+------
+
+#jQuery Plugin Documentation
+
 ### Basic usage:
 
 ```javascript
