@@ -66,8 +66,11 @@ function wp_jquery_countdown( $attributes ) {
     // include the jQuery script
     wp_enqueue_script( 'wp-jquery-countdown' );
 
+    // instantiate the PHP variable
+    $shortcode_content = NULL;
+
     // add the inline JS
-    $shortcode_content = '<script type="text/javascript">';
+    $shortcode_content .= '<script type="text/javascript">';
     $shortcode_content .= "jQuery('document').ready(function() {";
     $shortcode_content .= "jQuery('#wp_jquery_countdown').countdown({";
         // include options
@@ -83,7 +86,7 @@ function wp_jquery_countdown( $attributes ) {
     $shortcode_content .= '</script>';
 
     // add the HTML
-    $shortcode_content .= '<div class="wp_jquery_countdown"></div>';
+    $shortcode_content .= '<div id="wp_jquery_countdown"></div>';
 
     return $shortcode_content;
 }
