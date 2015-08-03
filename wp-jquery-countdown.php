@@ -63,6 +63,10 @@ function wp_jquery_countdown( $attributes ) {
         $this_digit_height = esc_attr( $shortcode_attributes['digit_height'] );
         $this_image = esc_attr( $shortcode_attributes['image'] );
 
+    // set up image file
+    if ( strpos( $this_image, 'http' ) ) { return; }
+    else { $this_image = plugins_url( 'img/digits.png', __FILE__ ); }
+
     // include the jQuery script
     wp_enqueue_script( 'wp-jquery-countdown' );
 
@@ -80,7 +84,7 @@ function wp_jquery_countdown( $attributes ) {
         if ( $this_digit_images ) { $shortcode_content .= 'digitImages: '. $this_digit_images . ',' . "\n"; }
         if ( $this_digit_width ) { $shortcode_content .= 'digitWidth: '. $this_digit_width . ',' . "\n"; }
         if ( $this_digit_height ) { $shortcode_content .= 'digitHeight: '. $this_digit_height . ',' . "\n"; }
-        if ( $this_image ) { $shortcode_content .= 'image: "'. $this_image . '",' . "\n"; }
+    $shortcode_content .= 'image: "'. $this_image . '",' . "\n";
     $shortcode_content .= "});";
     $shortcode_content .= "});";
     $shortcode_content .= '</script>';
