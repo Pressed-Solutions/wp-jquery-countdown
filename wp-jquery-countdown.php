@@ -36,12 +36,12 @@ function register_jquery_countdown() {
  * add shortcode
  *
  * @param: string $format time format to use; defaults to hh:mm:ss
- * @param: string $start_time starting time
- * @param: string $end_time count down this much time
+ * @param: string $start_time start the timer at this number
+ * @param: string $end_time end the timer at this time
  * @param: int $digit_images
  * @param: int $digit_width width (in px) of digit images
  * @param: int $digit_height height (in px) of digit images
- * @param: string $image name of digits file; defaults to "digits.png"
+ * @param: string $image path and name of digits file (relative to site root folder or absolute URL); defaults to "digits.png"
  * @return: string HTML, including the jQuery scripts
  */
 add_shortcode( 'wp_jquery_countdown', 'wp_jquery_countdown' );
