@@ -19,7 +19,7 @@ var createDigits = function(where, options) {
 
   for (var i = 0; i < options.startTime.length; i++) {
     if (parseInt(options.startTime[i]) >= 0) {
-      elem = $('<div id="cnt_' + counter + '" class="cntDigit" />').css({
+      elem = jQuery('<div id="cnt_' + counter + '" class="cntDigit" />').css({
 	height: options.digitHeight,
 	float: 'left',
 	background: 'url(\'' + options.image + '\')',
@@ -65,7 +65,7 @@ var createDigits = function(where, options) {
 
       counter += 1;
     } else {
-      elem = $('<div class="cntSeparator"/>').css({float: 'left'})
+      elem = jQuery('<div class="cntSeparator"/>').css({float: 'left'})
 					     .text(options.startTime[i]);
     }
     where.append(elem)
@@ -204,7 +204,7 @@ jQuery.fn.countdown = function(userOptions) {
     image: "digits.png",
     continuous: false
   };
-  $.extend(options, userOptions);
+  jQuery.extend(options, userOptions);
 
   // if an endTime is provided...
   if( userOptions.endTime ) {
@@ -215,7 +215,7 @@ jQuery.fn.countdown = function(userOptions) {
     userOptions.startTime = formatCompute(new Date(diff), options);
     delete userOptions.endTime;
   }
-  $.extend(options, userOptions);
+  jQuery.extend(options, userOptions);
   if (this.length) {
     clearInterval(intervals.main);
     createDigits(this, options);
