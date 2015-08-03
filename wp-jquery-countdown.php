@@ -24,6 +24,14 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+/*
+ * Register the jQuery file
+ */
+add_action( 'wp_enqueue_scripts', 'register_jquery_countdown' );
+function register_jquery_countdown() {
+    wp_register_script( 'wp-jquery-countdown', plugins_url( 'js/jquery.countdown.min.js', __FILE__ ), array( 'jquery' ) );
+}
+
 /**
  * add shortcode
  *
@@ -33,7 +41,6 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  * @param: int $digit_images
  * @param: int $digit_width width (in px) of digit images
  * @param: int $digit_height height (in px) of digit images
- * @param: string $timer_end Javascript code with callback function to run when countdown is complete
  * @param: string $image name of digits file; defaults to "digits.png"
  * @return: string HTML, including the jQuery scripts
  */
@@ -46,7 +53,6 @@ function wp_jquery_countdown( $attributes ) {
         'digit_images'  => NULL,
         'digit_width'   => NULL,
         'digit_height'  => NULL,
-        'timer_end'     => NULL,
         'image'         => NULL,
     ), $attributes );
         $this_format = esc_attr( $shortcode_attributes['format'] );
@@ -55,12 +61,29 @@ function wp_jquery_countdown( $attributes ) {
         $this_digit_images = esc_attr( $shortcode_attributes['digit_images'] );
         $this_digit_width = esc_attr( $shortcode_attributes['digit_width'] );
         $this_digit_height = esc_attr( $shortcode_attributes['digit_height'] );
-        $this_timer_end = esc_attr( $shortcode_attributes['timer_end'] );
         $this_image = esc_attr( $shortcode_attributes['image'] );
 
+    // include the jQuery script
+    wp_enqueue_script( 'wp-jquery-countdown' );
 
-    $shortcode_content .= '';
+    // add the inline JS
+    $shortcode_content = '<script type="text/javascript">';
+    $shortcode_content .= "jQuery('document').ready(function() {";
+    $shortcode_content .= "jQuery('#wp_jquery_countdown').countdown({";
+        // include options
+        if ( $this_format ) { $shortcode_content .= 'format: "'. $this_format . '",' . "\n"; }
+        if ( $this_start_time ) { $shortcode_content .= 'startTime: "'. $this_start_time . '",' . "\n"; }
+        if ( $this_end_time ) { $shortcode_content .= 'endTime: "'. $this_end_time . '",' . "\n"; }
+        if ( $this_digit_images ) { $shortcode_content .= 'digitImages: '. $this_digit_images . ',' . "\n"; }
+        if ( $this_digit_width ) { $shortcode_content .= 'digitWidth: '. $this_digit_width . ',' . "\n"; }
+        if ( $this_digit_height ) { $shortcode_content .= 'digitHeight: '. $this_digit_height . ',' . "\n"; }
+        if ( $this_image ) { $shortcode_content .= 'image: "'. $this_image . '",' . "\n"; }
+    $shortcode_content .= "});";
+    $shortcode_content .= "});";
+    $shortcode_content .= '</script>';
+
+    // add the HTML
+    $shortcode_content .= '<div class="wp_jquery_countdown"></div>';
 
     return $shortcode_content;
 }
-
