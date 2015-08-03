@@ -2,7 +2,16 @@
 
 WP jQuery Countdown is a fork of [jQuery Countdown](https://github.com/Reflejo/jquery-countdown) which allows the plugin to be used as a WP shortcode.
 
-Use `[wp_jquery_countdown endtime="15:00"]` to count down from 15 minutes.
+Use `[wp_jquery_countdown start_time="15:00"]` to count down from 15 minutes.
+
+Full list of shortcode attributes:
+
+- `format`: string with the time format; defaults to "hh:mm:ss"
+- `start_time`: string with the starting time for the timer to count down from; example: "5:00"
+- `end_time`: string with the ending time; example: "16:30:00"
+- `digit_width`: integer width of the image file (if you use a custom image)
+- `digit_height`: integer height of the image file (if you use a custom image)
+- `image`: absolute URL to a custom image file; defaults to img/digits.png in this plugin’s folder
 
 jQuery Countdown is a countdown library with an amazing animation. Take a look at the [demonstration](http://reflejo.github.com/jquery-countdown/).
 
